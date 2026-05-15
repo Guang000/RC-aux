@@ -1,0 +1,4 @@
+task,lewm_family_control,rc_aux_lambda_plan_0,rc_aux_full
+TwoRoom,88.8±3.0,93.2±1.1,98.0±1.4
+Reacher,82.8±7.2,81.2±5.4,87.2±6.4
+Wall,50.4±6.5,72.4±3.6,83.6±3.6

@@ -1,0 +1,7 @@
+defaults:
+  - cube
+  - override solver: cem10
+  - _self_
+
+output:
+  filename: ogb_cube_fixed_protocol_results.txt

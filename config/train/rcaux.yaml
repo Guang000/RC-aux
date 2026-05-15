@@ -1,0 +1,42 @@
+defaults:
+  - lewm
+  - _self_
+
+output_model_name: rcaux
+
+wm:
+  num_preds: 5
+
+loss:
+  prediction_type: multi_horizon
+  rollout:
+    min_horizon: 1
+    max_horizon: 4
+    sample: true
+    curriculum_epochs: 4
+    weighting: linear
+    weight_power: 1.0
+    one_step_anchor_weight: 0.0
+    prefix_horizon: 0
+    prefix_weight: 0.0
+  reachability:
+    enabled: true
+    freeze_base: false
+    weight: 0.35
+    max_horizon: 5
+    source_mode: context_only
+    horizon_weighting: uniform
+    horizon_weight_power: 1.0
+    hidden_dim: 512
+    horizon_dim: 32
+    pred_weight: 0.5
+    temporal_neg_weight: 1.0
+    pred_temporal_neg_weight: 0.5
+    terminal_weight: 0.0
+    terminal_pred_weight: 0.0
+    terminal_neg_weight: 1.0
+    planner_weight: 0.0
+    latent_weight: 1.0
+  planner:
+    goal_cost_reduce: terminal
+    goal_cost_softmin_temperature: 1.0

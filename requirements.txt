@@ -1,0 +1,14 @@
+stable-worldmodel[train,env]
+stable-pretraining
+hdf5plugin
+h5py
+hydra-core
+lightning
+omegaconf
+einops
+scikit-learn
+torch
+torchvision
+wandb
+easydict
+pillow

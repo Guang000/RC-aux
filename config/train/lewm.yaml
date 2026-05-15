@@ -1,0 +1,106 @@
+defaults:
+  - _self_
+  - data: pusht
+
+output_model_name: lewm
+subdir: ${hydra:job.id}
+
+num_workers: 6
+train_split: 0.9
+seed: 3072
+img_size: 224
+patch_size: 14
+encoder_scale: tiny
+dump_object: True
+
+init:
+  weights_path: null
+  strict: True
+
+trainer:
+  max_epochs: 100
+  devices: auto
+  accelerator: gpu
+  precision: bf16
+  gradient_clip_val: 1.0
+
+loader:
+  batch_size: 128
+  num_workers: ${num_workers}
+  persistent_workers: True
+  prefetch_factor: 3
+  pin_memory: True
+
+optimizer:
+  type: AdamW
+  lr: 5e-5
+  weight_decay: 1e-3
+
+wandb:
+  enabled: True
+  config:
+    entity: lewm
+    project: lewm
+    name: ${output_model_name}
+    id: ${subdir}
+    resume: allow
+    log_model: False
+
+wm:
+  type: lewm
+  history_size: 3
+  num_preds: 1
+  embed_dim: 192
+
+predictor:
+  depth: 6
+  heads: 16
+  mlp_dim: 2048
+  dim_head: 64
+  dropout: 0.1
+  emb_dropout: 0.0
+
+loss:
+  reg_type: sigreg
+  sigreg:
+    weight: 0.09
+    kwargs:
+      knots: 17
+      num_proj: 1024
+  adaptive_sigreg:
+    weight: 0.09
+    kwargs:
+      knots: 17
+      num_proj: 1024
+      momentum: 0.95
+      energy: 0.98
+      min_rank: 4
+      max_rank: null
+      rank_scale: 1.0
+      var_floor: 1.0e-4
+      mean_weight: 1.0
+      tail_weight: 0.05
+      isotropic_mix: 0.0
+  grounding:
+    enabled: false
+    target_key: state
+    weight: 0.25
+    hidden_dim: 512
+    obs_weight: 0.25
+    pred_weight: 1.0
+  temporal_distance:
+    enabled: false
+    weight: 0.25
+    max_horizon: 5
+    hidden_dim: 512
+    pair_weight: 1.0
+    pred_weight: 0.5
+    neg_weight: 1.0
+    terminal_weight: 0.0
+    terminal_pred_weight: 0.0
+    terminal_neg_weight: 1.0
+  planner:
+    goal_cost_reduce: terminal
+    goal_cost_softmin_temperature: 1.0
+    action_l2_cost_weight: 0.0
+    action_smooth_cost_weight: 0.0

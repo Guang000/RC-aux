@@ -1,0 +1,5 @@
+method,setting,mean_success
+LeWM + OFT-style head,trainable no-repeat,0.712
+RC-aux + OFT-style head,trainable no-repeat,0.812
+RC-aux + OFT-style head,repeat-tuned,0.864
+OpenVLA-OFT 7B,external reference,0.970

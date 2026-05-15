@@ -1,0 +1,10 @@
+defaults:
+  - rcaux_terminal_reachability
+  - _self_
+
+output_model_name: rcaux
+
+loss:
+  reachability:
+    planner_weight: 0.35
+    latent_weight: 1.0

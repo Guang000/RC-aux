@@ -1,0 +1,10 @@
+defaults:
+  - rcaux
+  - _self_
+
+output_model_name: rcaux_terminal_reachability
+
+loss:
+  reachability:
+    terminal_weight: 1.0
+    terminal_pred_weight: 0.5

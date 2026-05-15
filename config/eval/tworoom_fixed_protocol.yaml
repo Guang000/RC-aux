@@ -1,0 +1,6 @@
+defaults:
+  - tworoom
+  - _self_
+
+output:
+  filename: tworoom_fixed_protocol_results.txt
