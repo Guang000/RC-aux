@@ -19,7 +19,7 @@ Paper: [arXiv:2605.07278](https://arxiv.org/abs/2605.07278)
 │   └── eval_dino_family_official.py
 ├── libero/                   # LIBERO-Goal OFT/BCRNN action-head scripts
 ├── tools/                    # fixed-group generation and success summaries
-└── results/                  # paper result CSV summaries
+└── results/                  # result CSV summaries
 ```
 
 Checkpoints and datasets are not stored in the GitHub repository.  We release the main public checkpoint separately on Hugging Face.
@@ -71,7 +71,7 @@ cp /path/to/hf_release/checkpoints/tworoom_rcaux_best/* "$STABLEWM_HOME/tworoom_
 
 python eval.py --config-name=tworoom.yaml \
   cache_dir="$STABLEWM_HOME" \
-  policy=tworoom_rcaux_best/rclewm_tworoom_v2_goalprogress_stage2_seed3072_20260422_epoch_1 \
+  policy=tworoom_rcaux_best/rcaux_tworoom \
   planner_override.use_reachability_cost=true \
   planner_override.reachability_cost_weight=0.35 \
   output.filename=tworoom_rcaux_eval.txt
@@ -127,7 +127,7 @@ python train.py --config-name=lewm.yaml \
 RC-aux:
 
 ```bash
-python train.py --config-name=rcaux_paper.yaml \
+python train.py --config-name=rcaux_default.yaml \
   data=tworoom \
   wandb.enabled=false \
   output_model_name=rcaux_tworoom \
@@ -182,7 +182,7 @@ python libero/eval_libero_goal_lewm_oft_head.py \
 
 ## Main Reported Results
 
-The CSV summaries in `results/` mirror the paper tables.  Local LeWM-family rows are mean±std over five fixed evaluation groups of 50 episodes.
+The CSV summaries in `results/` mirror the reported tables.  Local LeWM-family rows are mean±std over five fixed evaluation groups of 50 episodes.
 
 | Task | LeWM | LeWM-cont | RC-aux | Matched delta |
 | --- | ---: | ---: | ---: | ---: |
@@ -204,3 +204,5 @@ For TwoRoom, Reacher, Push-T, and Cube, matched deltas compare against LeWM-cont
   year={2026}
 }
 ```
+
+This project builds on LeWorldModel, stable-worldmodel, stable-pretraining, DINO-WM, and LIBERO.  Please cite the corresponding original work when using those components.
