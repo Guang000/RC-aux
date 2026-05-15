@@ -72,8 +72,8 @@ cp /path/to/hf_release/checkpoints/tworoom_rcaux_best/* "$STABLEWM_HOME/tworoom_
 python eval.py --config-name=tworoom.yaml \
   cache_dir="$STABLEWM_HOME" \
   policy=tworoom_rcaux_best/rcaux_tworoom \
-  planner_override.use_reachability_cost=true \
-  planner_override.reachability_cost_weight=0.85 \
+  +planner_override.use_reachability_cost=true \
+  +planner_override.reachability_cost_weight=0.85 \
   output.filename=tworoom_rcaux_eval.txt
 ```
 
