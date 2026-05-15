@@ -143,6 +143,7 @@ init.weights_path=/path/to/source_object.ckpt init.strict=false
 ## LIBERO-Goal
 
 The LIBERO-Goal extension code is under `libero/`.  It trains an OFT-style action chunk head on top of the LeWM-family representation and evaluates with the official LIBERO success checker.
+LIBERO-Goal does not use the MPC planner or `planner_override.*` settings; there is no `reachability_cost_weight` argument in these scripts.
 
 Expected local layout:
 
