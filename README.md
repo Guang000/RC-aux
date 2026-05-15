@@ -66,12 +66,12 @@ Checkpoint paths are resolved relative to `$STABLEWM_HOME`.  Pass policy stems w
 Example with the released TwoRoom RC-aux checkpoint:
 
 ```bash
-mkdir -p "$STABLEWM_HOME/tworoom_rcaux_best"
-cp /path/to/hf_release/checkpoints/tworoom_rcaux_best/* "$STABLEWM_HOME/tworoom_rcaux_best/"
+mkdir -p "$STABLEWM_HOME/tworoom_rcaux"
+cp /path/to/hf_release/rcaux/checkpoints/pixel_control/tworoom_rcaux/* "$STABLEWM_HOME/tworoom_rcaux/"
 
 python eval.py --config-name=tworoom.yaml \
   cache_dir="$STABLEWM_HOME" \
-  policy=tworoom_rcaux_best/rcaux_tworoom \
+  policy=tworoom_rcaux/rcaux_tworoom \
   +planner_override.use_reachability_cost=true \
   +planner_override.reachability_cost_weight=0.85 \
   output.filename=tworoom_rcaux_eval.txt
@@ -173,6 +173,7 @@ python libero/train_libero_goal_lewm_oft_head.py \
 Evaluate:
 
 ```bash
+TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1 \
 python libero/eval_libero_goal_lewm_oft_head.py \
   --checkpoint runs/libero_goal_rcaux_oft/lewm_libero_oft_head_epoch_30.ckpt \
   --tasks all \
@@ -180,6 +181,8 @@ python libero/eval_libero_goal_lewm_oft_head.py \
   --max-steps 600 \
   --output results/libero_goal_rcaux_oft_n50.json
 ```
+
+On systems where robosuite cannot create an EGL offscreen context, run the same command with `MUJOCO_GL=glx`.
 
 ## Main Reported Results
 
