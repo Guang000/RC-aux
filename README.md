@@ -2,7 +2,7 @@
 
 This repository contains the code for **Reachability-Correction auxiliary objective (RC-aux)**.  RC-aux is a lightweight training and planning correction for reconstruction-free latent world models: it keeps the LeWM backbone unchanged, trains open-loop multi-horizon prediction, adds a budget-conditioned reachability head, and optionally uses that reachability signal during planning.
 
-<img src="./images/logo.jpg" width="20%"/>
+<img src="./images/logo.png" width="20%"/>
 
 Paper: [arXiv:2605.07278](https://arxiv.org/abs/2605.07278)
 
